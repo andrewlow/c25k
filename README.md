@@ -1,13 +1,17 @@
 # c25k
 A couch to 5k running program web app hosted on github pages
 
+# Development
 
+Keeping the HTML nicely formatted
 ```
 tidy  -mi -w 120 index.html 
 ```
 
-
-# Development
+Formatting the JS code
+```
+js-beautify -r logic.js 
+```
 
 Using busybox as a local webserver.
 
