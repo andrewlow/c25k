@@ -11,30 +11,41 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
   <div class="container">
-    <div class="row">
-      <h1>Couch to 5k</h1>
-      <div class="col">
-        <div class="btn btn-primary btn-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-play-fill"
-          viewbox="0 0 16 16">
-          <path d=
-          "m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z">
-          </path></svg> Run
+    <div>
+      <div class="row">
+        <div class="col-xs-4 col-md-4 col-sm-4">
+          <h1>Couch to 5k</h1>
         </div>
-        <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
-        aria-valuemax="100">
-          <div class="progress-bar" style="width: 0%"></div>
+        <div class="col-xs-4 col-md-4 col-sm-4"></div>
+        <div class="col-xs-4 col-md-4 col-sm-4">
+          3 worksout x 9 weeks = 27 sessions
         </div>
       </div>
-      <div class="col">
-        two
+      <div class="row">
+        <div class="col-4">
+          <div class="btn btn-primary btn-lg" id="button" onclick='buttonClick()'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-play-fill"
+            viewbox="0 0 16 16" id="button-svg">
+            <path d=
+            "m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z">
+            </path></svg> Run
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
+          aria-valuemax="100">
+            <div class="progress-bar" style="width: 0%"></div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <br>
-        <label for="customRange3" class="form-label">Workout</label> <label id="workout">xxx</label> <input type=
-        "range" class="form-range" min="1" max="27" step="1" id="workout-range" onchange="changeWorkout();">
+      <div class="row">
+        <div class="col-4">
+          <h2 id=workout>Workout</h2>
+        </div>
+        <div class="col-8">
+          <input type="range" class="form-range" min="1" max="27" step="1" id="workout-range" onchange=
+          "changeWorkout();">
+        </div>
       </div>
     </div>
   </div>
