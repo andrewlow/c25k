@@ -98,6 +98,9 @@ function nextSegment() {
     }
     startTimer()
     announceActivity(activity)
+    // set progress bar to reprsent activity
+    percentage = Math.floor(((sessionIndex + 1) / session.length) * 100)
+    document.getElementById("progress").style.width = percentage.toString() + "%"
 }
 
 // start timer - assumes timer is stopped
@@ -137,7 +140,10 @@ function changeWorkout() {
     // load up the workout data
     session = workouts[config.workout - 1]
     sessionIndex = 0
+    // reset the progress slider
+    document.getElementById("progress").style.width = "0%"
 }
+
 // button pressed
 function buttonClick() {
     // figure state out by what is in the text
@@ -215,3 +221,4 @@ setInterval(function() {
         }
     }
 }, 1000)
+
