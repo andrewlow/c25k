@@ -98,7 +98,7 @@ function nextSegment() {
     }
     startTimer()
     announceActivity(activity)
-    // set progress bar to reprsent activity
+    // set progress bar to represent activity
     percentage = Math.floor(((sessionIndex + 1) / session.length) * 100)
     document.getElementById("progress").style.width = percentage.toString() + "%"
 }
@@ -129,7 +129,17 @@ function announceActivity(array) {
 
 // Action fired when the workout slider is moved
 function changeWorkout() {
-    // TO-DO stop active timer if happening
+    if (endTime != null) {
+        // stop active timer - by pretending to click the button
+        buttonClick()
+    }
+    // reset timer state
+    timeLeft = null
+    // clear active displays
+    document.title = "Couch to 5k"
+    document.getElementById("countdown").innerHTML = ""
+    document.getElementById("state").innerHTML = ""
+
     value = document.getElementById("workout-range").value
     config.workout = value
     valueString = value.toString()
@@ -221,4 +231,3 @@ setInterval(function() {
         }
     }
 }, 1000)
-
