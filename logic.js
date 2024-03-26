@@ -87,9 +87,28 @@ function decodeSession() {
 // next segment - move to the next part of current session
 function nextSegment() {
     sessionIndex = sessionIndex + 1;
-    if (sessionIndex > session.length) {
+    if (sessionIndex >= session.length) {
         // we are at the end.. congratulations
-        // workout done
+        // simulate button click
+        buttonClick()
+        // increment to the next workout 
+        next = Number(document.getElementById("workout-range").value) + 1
+        if (next >= workouts.length) {
+            // we are done all the workouts 
+            utterance = new SpeechSynthesisUtterance("increadible you finished the couch to five K program")
+            speechSynthesis.speak(utterance);
+            // pretend we changed the workout, but get the side effect of the reset
+            changeWorkout()
+            return
+        } else {
+            // workout done
+            utterance = new SpeechSynthesisUtterance("good job, you can stop now")
+            speechSynthesis.speak(utterance);
+            document.getElementById("workout-range").value = next
+            // simulate changing the workout
+            changeWorkout()
+            return
+        }
     } else {
         // start next segment 
         activity = decodeSession()
@@ -123,7 +142,7 @@ function announceActivity(array) {
         mode = 'run'
     }
     document.getElementById("state").innerHTML = mode
-    let utterance = new SpeechSynthesisUtterance(mode + " for " + duration.toString() + " minutes");
+    utterance = new SpeechSynthesisUtterance(mode + " for " + duration.toString() + " minutes");
     speechSynthesis.speak(utterance);
 }
 
