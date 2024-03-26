@@ -63,15 +63,15 @@ var timeLeft = null
 
 // pretty print the time (input in milliseconds, output is a string in minutes / seconds)
 function prettyTime(millis) {
-        seconds = millis / 1000
-	min = Math.floor(seconds/60)
-	sec = Math.floor(seconds - (min * 60))
-        string = min.toString() + ":"
-        if(sec < 10) {
-          string = string + "0"
-       }
-        string = string + sec.toString()
-       return string;
+    seconds = millis / 1000
+    min = Math.floor(seconds / 60)
+    sec = Math.floor(seconds - (min * 60))
+    string = min.toString() + ":"
+    if (sec < 10) {
+        string = string + "0"
+    }
+    string = string + sec.toString()
+    return string;
 }
 
 // based on the current session and index, decode walk or run and the duration
@@ -119,6 +119,7 @@ function announceActivity(array) {
         // assume it is run
         mode = 'run'
     }
+    document.getElementById("state").innerHTML = mode
     let utterance = new SpeechSynthesisUtterance(mode + " for " + duration.toString() + " minutes");
     speechSynthesis.speak(utterance);
 }
@@ -149,12 +150,12 @@ function buttonClick() {
 		<path d= "m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 \
 		 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"> </path></svg> Run'
         // is timer running? pause it
-        if(endTime != null) {
-           // calculate delta, convert to seconds and remember it
-        now = new Date()
-        delta = endTime - now
-        endTime = null
-        timeLeft = delta / 1000
+        if (endTime != null) {
+            // calculate delta, convert to seconds and remember it
+            now = new Date()
+            delta = endTime - now
+            endTime = null
+            timeLeft = delta / 1000
         }
     } else {
         // Change to Run phase, display Pause button
@@ -172,10 +173,10 @@ function buttonClick() {
         } else {
             // just resume the timer
             // which is recalculate the endTime
-    done = new Date()
-    done.setSeconds(done.getSeconds() + timeLeft)
-    endTime = done
-	}
+            done = new Date()
+            done.setSeconds(done.getSeconds() + timeLeft)
+            endTime = done
+        }
 
     }
 }
@@ -205,10 +206,12 @@ setInterval(function() {
     if (endTime != null) {
         now = new Date()
         delta = endTime - now
-	if(delta < 0) {
-nextSegment()
-	} else {
-        document.title = "[" + prettyTime(delta) + "] Couch to 5k"
-}
+        if (delta < 0) {
+            nextSegment()
+        } else {
+            countdown = prettyTime(delta)
+            document.title = "[" + countdown + "] Couch to 5k"
+            document.getElementById("countdown").innerHTML = countdown
+        }
     }
 }, 1000)
